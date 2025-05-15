@@ -18,7 +18,7 @@ function App() {
       setResult(expResult);
     }
     catch(error){
-      console.error(error);
+      setResult(error);
     }
   }
 
