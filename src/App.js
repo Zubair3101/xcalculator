@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import CalcInput from './components/CalcInput';
+import CalcBtns from './components/CalcBtns';
 
 function App() {
+
+  let [expression, setExpression] = useState("");
+  let [result, setResult] = useState("");
+
+  const handleClick = (ele) => {
+    setExpression(prev => prev + ele);
+  }
+
+  const handleEquals = () => {
+    try{
+      let expResult = eval(expression);
+      setResult(expResult);
+    }
+    catch(error){
+      console.error(error);
+    }
+  }
+
+  const handleClear = () => {
+    setExpression("");
+    setResult("");
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CalcInput expression={expression} result={result} />
+      <CalcBtns handleClear={handleClear} handleClick={handleClick} handleEquals={handleEquals}/>
     </div>
   );
 }
