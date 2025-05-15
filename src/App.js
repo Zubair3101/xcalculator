@@ -14,6 +14,11 @@ function App() {
 
   const handleEquals = () => {
     try{
+       if (/[\+\-\*\/]$/.test(expression) || expression === "") {
+      setResult("Error");
+      return;
+    }
+      
       let expResult = eval(expression);
       setResult(expResult);
     }
