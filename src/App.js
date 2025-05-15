@@ -23,7 +23,7 @@ function App() {
       setResult(expResult);
     }
     catch(error){
-      setResult(error);
+      setResult("Error");
     }
   }
 
